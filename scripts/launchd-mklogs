@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+{ set +x; } 2>/dev/null
+
+usage() {
+    cat <<EOF 1>&2
+usage: $(basename $0) path ...
+EOF
+    [[ $1 == "-h" ]] || [[ $1 == "--help" ]]; exit
+}
+
+[[ $1 == "-h" ]] || [[ $1 == "--help" ]] && usage "$@"
+
+[[ $# == 0 ]] && usage
+
+while (($#)); do
+    ! [ -e "$1" ] && echo "ERROR ($1): NOT EXISTS" 1>&2 && exit 1
+    ! [ -f "$1" ] && echo "ERROR ($1): NOT A FILE" 1>&2 && exit 1
+    [[ $1 != *.plist ]] && echo "ERROR ($1): NOT .plist" 1>&2 && exit 1
+
+    for key in StandardOutPath StandardErrorPath; do
+        grep -q "<key>$key</key>" "$1" && {
+            path="$(/usr/libexec/PlistBuddy -c "Print $key" "$1")" || exit
+            [[ "$path" == /* ]] && {
+                ! [ -e "${path%/*}" ] && { mkdir -p "${path%/*}" || exit; }
+                ! [ -e "$path" ] && { /usr/bin/touch "$path" || exit; }
+            }
+        }
+    done
+    shift
+done;:
+
