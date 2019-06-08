@@ -1,0 +1,14 @@
+{
+  "name": "launchd-mklogs",
+  "version": "2019.4.13",
+  "description": "add launchd.plist logs",
+  "keywords": [
+    "launchd",
+    "logs"
+  ],
+  "homepage": "https://github.com/looking-for-a-job/launchd-mklogs",
+  "license": "Unlicense",
+  "bin": {
+    "launchd-mklogs": "./scripts/launchd-mklogs"
+  }
+}

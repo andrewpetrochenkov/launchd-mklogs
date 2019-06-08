@@ -5,9 +5,13 @@ https://pypi.org/project/python-readme-generator/
 
 [![](https://img.shields.io/badge/OS-Unix-blue.svg?longCache=True)]()
 [![](https://img.shields.io/pypi/v/launchd-mklogs.svg?maxAge=3600)](https://pypi.org/project/launchd-mklogs/)
+[![](https://img.shields.io/npm/v/launchd-mklogs.svg?maxAge=3600)](https://www.npmjs.com/package/launchd-mklogs)
 [![Travis](https://api.travis-ci.org/looking-for-a-job/launchd-mklogs.svg?branch=master)](https://travis-ci.org/looking-for-a-job/launchd-mklogs/)
 
 #### Installation
+```bash
+$ [sudo] npm i -g launchd-mklogs
+```
 ```bash
 $ [sudo] pip install launchd-mklogs
 ```
